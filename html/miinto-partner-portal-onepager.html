@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Miinto Partner Companion App — One Pager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        miinto: {
+                            primary: '#1a1a2e',
+                            secondary: '#16213e',
+                            accent: '#e94560',
+                            light: '#f5f5f7'
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.6s ease-out',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out',
+                        'slide-in-right': 'slideInRight 0.6s ease-out',
+                        'float': 'float 4s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2.5s ease-in-out infinite',
+                        'spin-slow': 'spin 18s linear infinite',
+                        'shimmer': 'shimmer 2.5s linear infinite'
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: 0 }, '100%': { opacity: 1 } },
+                        fadeInUp: {
+                            '0%': { opacity: 0, transform: 'translateY(20px)' },
+                            '100%': { opacity: 1, transform: 'translateY(0)' }
+                        },
+                        slideInRight: {
+                            '0%': { opacity: 0, transform: 'translateX(20px)' },
+                            '100%': { opacity: 1, transform: 'translateX(0)' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { boxShadow: '0 0 0 0 rgba(233, 69, 96, 0.4)' },
+                            '50%': { boxShadow: '0 0 0 18px rgba(233, 69, 96, 0)' }
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-1000px 0' },
+                            '100%': { backgroundPosition: '1000px 0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * { font-family: 'Inter', sans-serif; }
+
+        :root {
+            --miinto-primary: #1a1a2e;
+            --miinto-secondary: #16213e;
+            --miinto-accent: #e94560;
+            --miinto-success: #10b981;
+        }
+
+        .gradient-bg { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); }
+
+        .gradient-bg-radial {
+            background:
+                radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.15), transparent 40%),
+                linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+        }
+        .dark .gradient-bg-radial {
+            background:
+                radial-gradient(circle at 20% 30%, rgba(233, 69, 96, 0.25), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(99, 102, 241, 0.25), transparent 40%),
+                linear-gradient(135deg, #0a0a1a 0%, #0d1228 50%, #061a3a 100%);
+        }
+
+        .card-hover { transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s ease, border-color 0.35s ease; }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+        .dark .card-hover:hover { box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+
+        .notification-badge { animation: badgePulse 2s infinite; }
+        @keyframes badgePulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(1.4); }
+        }
+
+        .nav-link { position: relative; }
+        .nav-link::after {
+            content: ''; position: absolute; bottom: -2px; left: 0;
+            width: 0; height: 2px; background: #e94560;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after { width: 100%; }
+
+        .reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .device-frame {
+            background: linear-gradient(145deg, #1a1a2e, #2a2a4e);
+            border-radius: 36px;
+            padding: 10px;
+            box-shadow:
+                0 0 0 2px rgba(255,255,255,0.06) inset,
+                0 30px 60px -10px rgba(0,0,0,0.4),
+                0 18px 36px -18px rgba(233, 69, 96, 0.4);
+        }
+        .device-screen { background: #f8fafc; border-radius: 28px; overflow: hidden; position: relative; }
+        .dark .device-screen { background: #0f172a; }
+        .device-notch {
+            position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 22px; background: #1a1a2e;
+            border-radius: 14px; z-index: 10;
+        }
+
+        .hub-center {
+            background: linear-gradient(135deg, #e94560, #c0334a);
+            box-shadow:
+                0 0 60px rgba(233, 69, 96, 0.5),
+                0 0 0 8px rgba(233, 69, 96, 0.1),
+                0 0 0 16px rgba(233, 69, 96, 0.05);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .dark body { background: #0a0a14; color: #e5e7eb; }
+
+        .orb { position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4; pointer-events: none; }
+
+        .tab-btn { transition: all 0.25s ease; }
+        .tab-btn.active {
+            background: #1a1a2e; color: white;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 20px -8px rgba(26, 26, 46, 0.5);
+        }
+        .dark .tab-btn { background: #1f2937; color: #d1d5db; }
+        .dark .tab-btn.active { background: #e94560; color: white; }
+
+        .process-tab { transition: all 0.3s ease; }
+        .process-tab.active {
+            background: #e94560; color: white; border-color: #e94560;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px -10px rgba(233, 69, 96, 0.7);
+        }
+
+        ::-webkit-scrollbar { width: 10px; height: 10px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.15); border-radius: 5px; }
+        .dark ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); }
+
+        .module-ring { position: relative; }
+        .module-ring::before {
+            content: ''; position: absolute; inset: -3px;
+            border-radius: inherit; padding: 3px;
+            background: linear-gradient(135deg, #e94560, #6366f1, #10b981, #f59e0b);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .module-ring:hover::before { opacity: 1; }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #e94560 0%, #ff8a65 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .phone-frame {
+            width: 280px;
+            height: 580px;
+            background: #1a1a2e;
+            border-radius: 40px;
+            padding: 12px;
+            position: relative;
+            box-shadow: 0 0 0 2px #2a2a4e, 0 30px 60px -10px rgba(0,0,0,0.4);
+        }
+        .phone-screen {
+            width: 100%; height: 100%;
+            border-radius: 28px;
+            overflow: hidden;
+            background: white;
+            position: relative;
+        }
+        .dark .phone-screen { background: #111827; }
+
+        .status-bar {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 6px 24px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .dark .status-bar { color: #e5e7eb; }
+
+        .panel { display: none; }
+        .panel.active { display: block; animation: fadeIn 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Scroll progress bar */
+        #scroll-progress {
+            position: fixed; top: 0; left: 0;
+            height: 3px; width: 0%;
+            background: linear-gradient(90deg, #e94560, #6366f1, #10b981);
+            z-index: 60;
+            transform: translateZ(0);
+            will-change: width;
+            transition: width 0.08s linear;
+        }
+
+        /* Sticky-nav active indicator */
+        .nav-link.is-active { color: #e94560; }
+        .dark .nav-link.is-active { color: #ff7a8c; }
+        .nav-link.is-active::after { width: 100%; }
+
+        /* Focus-visible accessibility */
+        a:focus-visible, button:focus-visible, input:focus-visible, [tabindex]:focus-visible {
+            outline: 2px solid #e94560;
+            outline-offset: 3px;
+            border-radius: 4px;
+        }
+
+        /* Lucide icon fallback square so layout doesn't collapse if the lib fails */
+        i[data-lucide] {
+            display: inline-block;
+            width: 1em; height: 1em;
+            vertical-align: -0.125em;
+        }
+        i[data-lucide]:empty::before {
+            content: "";
+            display: inline-block;
+            width: 100%; height: 100%;
+            background: currentColor;
+            mask: radial-gradient(circle, transparent 35%, currentColor 36% 45%, transparent 46%) center/100% 100% no-repeat;
+            -webkit-mask: radial-gradient(circle, transparent 35%, currentColor 36% 45%, transparent 46%) center/100% 100% no-repeat;
+            opacity: 0.5;
+        }
+
+        /* Mobile menu */
+        #mobile-menu { transform: translateX(100%); transition: transform 0.3s cubic-bezier(.2,.8,.2,1); }
+        #mobile-menu.open { transform: translateX(0); }
+        #mobile-menu-overlay { opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        #mobile-menu-overlay.open { opacity: 1; pointer-events: auto; }
+
+        /* Modal */
+        #spec-modal { opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+        #spec-modal.open { opacity: 1; pointer-events: auto; }
+        #spec-modal .modal-card { transform: translateY(20px) scale(0.97); transition: transform 0.3s cubic-bezier(.2,.8,.2,1); }
+        #spec-modal.open .modal-card { transform: translateY(0) scale(1); }
+
+        /* Wireframe interactive elements */
+        .wf-clickable {
+            cursor: pointer;
+            transition: transform 0.18s ease, box-shadow 0.18s ease, background-color 0.18s ease;
+            transform: translateZ(0);
+        }
+        .wf-clickable:hover {
+            transform: translateY(-2px) translateZ(0);
+            box-shadow: 0 6px 16px -8px rgba(233,69,96,0.4);
+        }
+        .wf-clickable:active { transform: translateY(0) translateZ(0); }
+        .wf-ripple { position: relative; overflow: hidden; }
+        .wf-ripple::after {
+            content: ''; position: absolute; inset: 0;
+            background: radial-gradient(circle at center, rgba(233,69,96,0.25), transparent 70%);
+            opacity: 0; transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+        .wf-ripple:active::after { opacity: 1; transition: opacity 0s; }
+
+        /* Responsive tweaks */
+        @media (max-width: 640px) {
+            section { padding-left: 1rem; padding-right: 1rem; }
+            h1 { font-size: 2.25rem !important; line-height: 1.15 !important; }
+            h2 { font-size: 1.875rem !important; line-height: 1.2 !important; }
+            .device-frame { transform: scale(0.85); }
+            .phone-frame { width: 240px; height: 500px; }
+        }
+        @media (min-width: 641px) and (max-width: 1023px) {
+            .device-frame { transform: scale(0.95); }
+        }
+
+        /* Print stylesheet */
+        @media print {
+            @page { size: A4; margin: 12mm; }
+            html, body { background: white !important; color: #111 !important; }
+            nav, footer, #scroll-progress, #mobile-menu, #mobile-menu-overlay,
+            #spec-modal, #theme-toggle, .orb, button[onclick] { display: none !important; }
+            .gradient-bg, .gradient-bg-radial,
+            .bg-gradient-to-br, .bg-gradient-to-r {
+                background: #f5f5f7 !important;
+                color: #111 !important;
+            }
+            .text-gradient { color: #1a1a2e !important; -webkit-text-fill-color: #1a1a2e !important; }
+            .text-white, .text-white\/80, .text-white\/70, .text-white\/60, .text-white\/50 {
+                color: #111 !important;
+            }
+            section { page-break-inside: avoid; padding: 1rem 0 !important; }
+            .panel:not(.active) { display: block !important; page-break-before: always; }
+            .device-frame, .phone-frame {
+                box-shadow: none !important;
+                background: #ddd !important;
+                page-break-inside: avoid;
+            }
+            .card-hover, .reveal { opacity: 1 !important; transform: none !important; }
+            a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.8em; color: #555; }
+            .shadow-sm, .shadow-lg { box-shadow: none !important; }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-[#0a0a14] text-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<!-- Skip-to-content link for keyboard users -->
+<a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] focus:bg-[#e94560] focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold">Skip to main content</a>
+
+<!-- Scroll progress indicator -->
+<div id="scroll-progress" role="progressbar" aria-label="Page scroll progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+
+<!-- Navigation -->
+<nav class="fixed top-0 left-0 right-0 bg-white/95 dark:bg-[#0a0a14]/95 backdrop-blur-md z-50 border-b border-gray-100 dark:border-gray-800 transition-colors duration-300" aria-label="Primary navigation">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="flex items-center justify-between h-16">
+            <a href="#" class="flex items-center gap-3 min-w-0" aria-label="Miinto Companion App home">
+                <div class="w-10 h-10 rounded-lg gradient-bg flex items-center justify-center flex-shrink-0" aria-hidden="true">
+                    <span class="text-white font-bold text-lg">M</span>
+                </div>
+                <span class="font-bold text-xl truncate">Miinto</span>
+                <span class="hidden sm:inline text-xs bg-[#e94560]/10 text-[#e94560] px-2 py-1 rounded-full font-medium whitespace-nowrap">Companion App</span>
+            </a>
+            <div class="hidden md:flex items-center gap-7" role="menubar">
+                <a href="#overview" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Overview</a>
+                <a href="#companion" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Companion App</a>
+                <a href="#process" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Process</a>
+                <a href="#wireframes" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Screens</a>
+                <a href="#architecture" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Architecture</a>
+                <a href="#competitors" class="nav-link text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white text-sm font-medium" role="menuitem">Competitors</a>
+            </div>
+            <div class="flex items-center gap-2 sm:gap-3">
+                <button id="open-spec" type="button" aria-label="Open technical specification" aria-haspopup="dialog" aria-controls="spec-modal" class="hidden sm:inline-flex w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 items-center justify-center transition-colors" title="Technical Spec">
+                    <i data-lucide="code-2" class="w-5 h-5 text-gray-700 dark:text-gray-200" aria-hidden="true"></i>
+                </button>
+                <button id="theme-toggle" type="button" aria-label="Toggle dark mode" aria-pressed="false" class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center transition-colors">
+                    <i data-lucide="sun" class="w-5 h-5 hidden dark:block text-yellow-400" aria-hidden="true"></i>
+                    <i data-lucide="moon" class="w-5 h-5 block dark:hidden text-gray-700" aria-hidden="true"></i>
+                </button>
+                <button onclick="scrollToSection('contact')" type="button" class="hidden sm:inline-flex bg-[#e94560] text-white px-5 py-2 rounded-lg text-sm font-medium hover:bg-[#d13a52] transition-all hover:scale-105 hover:shadow-lg hover:shadow-[#e94560]/30">
+                    Get Started
+                </button>
+                <button id="mobile-menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 flex items-center justify-center transition-colors">
+                    <i data-lucide="menu" class="w-5 h-5 text-gray-700 dark:text-gray-200" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Mobile menu drawer -->
+<div id="mobile-menu-overlay" class="fixed inset-0 bg-black/50 z-40 md:hidden" aria-hidden="true"></div>
+<aside id="mobile-menu" class="fixed top-0 right-0 bottom-0 w-72 max-w-[85vw] bg-white dark:bg-[#0d0d1a] z-50 md:hidden shadow-2xl flex flex-col" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+    <div class="flex items-center justify-between p-4 border-b border-gray-100 dark:border-gray-800">
+        <span class="font-bold">Menu</span>
+        <button id="mobile-menu-close" type="button" aria-label="Close menu" class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 flex items-center justify-center">
+            <i data-lucide="x" class="w-5 h-5" aria-hidden="true"></i>
+        </button>
+    </div>
+    <nav class="flex flex-col p-4 gap-1 overflow-y-auto" aria-label="Mobile">
+        <a href="#overview" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Overview</a>
+        <a href="#companion" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Companion App</a>
+        <a href="#process" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Process</a>
+        <a href="#wireframes" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Screens</a>
+        <a href="#architecture" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Architecture</a>
+        <a href="#competitors" class="mobile-link px-4 py-3 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 font-medium">Competitors</a>
+        <button id="open-spec-mobile" type="button" class="mt-2 px-4 py-3 rounded-lg border border-gray-200 dark:border-gray-700 text-left font-medium flex items-center gap-2">
+            <i data-lucide="code-2" class="w-4 h-4" aria-hidden="true"></i> Technical Spec
+        </button>
+        <a href="#contact" class="mt-1 mobile-link bg-[#e94560] text-white px-4 py-3 rounded-lg font-semibold text-center">Get Started</a>
+    </nav>
+</aside>
+
+<main id="main">
+
+<!-- Hero -->
+<section class="gradient-bg-radial pt-32 pb-24 px-6 relative overflow-hidden" aria-labelledby="hero-title">
+    <div class="orb bg-[#e94560]" style="width:400px;height:400px;top:-100px;right:-100px;"></div>
+    <div class="orb bg-[#6366f1]" style="width:350px;height:350px;bottom:-50px;left:-100px;"></div>
+
+    <div class="max-w-7xl mx-auto relative">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="animate-fade-in-up">
+                <div class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full mb-6">
+                    <span class="w-2 h-2 bg-green-400 rounded-full notification-badge"></span>
+                    <span class="text-white/90 text-sm font-medium">Strategic Initiative — 2025/2026</span>
+                </div>
+                <h1 id="hero-title" class="text-5xl lg:text-6xl font-bold text-white leading-tight mb-4">
+                    The <span class="text-gradient">Companion App</span>
+                </h1>
+                <h2 class="text-2xl lg:text-3xl text-white/80 font-light mb-6 leading-snug">
+                    One central platform for every Miinto partner — onboarding, contracts, training, and support in a single experience.
+                </h2>
+                <p class="text-lg text-white/60 mb-8 leading-relaxed max-w-xl">
+                    From signing the first contract to running daily operations, partners live inside the Companion App.
+                    Self-service first, AI-assisted, available 24/7 across web and mobile.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <button onclick="scrollToSection('companion')" class="bg-[#e94560] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#d13a52] transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#e94560]/40 flex items-center gap-2 group">
+                        <span>Explore the App</span>
+                        <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                    <button onclick="scrollToSection('architecture')" class="glass text-white px-8 py-4 rounded-xl font-semibold hover:bg-white/20 transition-all flex items-center gap-2">
+                        <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                        <span>View Architecture</span>
+                    </button>
+                </div>
+
+                <div class="grid grid-cols-3 gap-6 mt-12">
+                    <div>
+                        <div class="text-4xl font-bold text-white mb-1">2-4<span class="text-[#e94560] text-2xl">wks</span></div>
+                        <div class="text-white/50 text-sm">Manual today</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-white mb-1">24-48<span class="text-[#10b981] text-2xl">hrs</span></div>
+                        <div class="text-white/50 text-sm">In Companion App</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl font-bold text-white mb-1"><span class="text-[#10b981]">95</span>%</div>
+                        <div class="text-white/50 text-sm">Activation success</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative flex items-center justify-center animate-fade-in-up" style="animation-delay: 0.2s;">
+                <div class="device-frame w-[320px] animate-float">
+                    <div class="device-notch"></div>
+                    <div class="device-screen aspect-[9/19.5] p-5 pt-10">
+                        <div class="flex items-center justify-between mb-5">
+                            <div>
+                                <div class="text-[10px] text-gray-500 uppercase tracking-wider">Welcome back</div>
+                                <div class="text-base font-bold text-gray-900 dark:text-white">Boutique Nordique</div>
+                            </div>
+                            <div class="relative">
+                                <div class="w-9 h-9 rounded-full bg-gradient-to-br from-[#e94560] to-[#6366f1] flex items-center justify-center text-white text-xs font-bold">BN</div>
+                                <span class="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-500 rounded-full border-2 border-white dark:border-gray-900 notification-badge"></span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-3 mb-4 text-white">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-[10px] opacity-70">Onboarding</span>
+                                <span class="text-[10px] font-semibold">4 / 6</span>
+                            </div>
+                            <div class="h-1.5 bg-white/20 rounded-full overflow-hidden">
+                                <div class="h-full bg-gradient-to-r from-[#e94560] to-[#10b981] rounded-full" style="width: 66%"></div>
+                            </div>
+                            <div class="text-xs mt-2 font-medium">Up next: Technical setup</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 mb-4">
+                            <div class="bg-[#e94560]/10 rounded-lg p-2.5">
+                                <i data-lucide="file-signature" class="w-4 h-4 text-[#e94560] mb-1.5"></i>
+                                <div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">Contract</div>
+                                <div class="text-[9px] text-[#10b981]">Signed</div>
+                            </div>
+                            <div class="bg-[#6366f1]/10 rounded-lg p-2.5">
+                                <i data-lucide="graduation-cap" class="w-4 h-4 text-[#6366f1] mb-1.5"></i>
+                                <div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">Training</div>
+                                <div class="text-[9px] text-[#f59e0b]">3 / 5 modules</div>
+                            </div>
+                            <div class="bg-[#10b981]/10 rounded-lg p-2.5">
+                                <i data-lucide="plug" class="w-4 h-4 text-[#10b981] mb-1.5"></i>
+                                <div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">Integration</div>
+                                <div class="text-[9px] text-gray-500">Sandbox</div>
+                            </div>
+                            <div class="bg-[#f59e0b]/10 rounded-lg p-2.5">
+                                <i data-lucide="headphones" class="w-4 h-4 text-[#f59e0b] mb-1.5"></i>
+                                <div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">Support</div>
+                                <div class="text-[9px] text-[#10b981]">2 open</div>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-2.5">
+                            <div class="text-[10px] font-semibold text-gray-700 dark:text-gray-300 mb-2">Recent activity</div>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#10b981]"></div>
+                                    <span class="text-[9px] text-gray-600 dark:text-gray-400">Contract signed via DocuSign</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#6366f1]"></div>
+                                    <span class="text-[9px] text-gray-600 dark:text-gray-400">Module 3 quiz passed (92%)</span>
+                                </div>
+                                <div class="flex items-center gap-2">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-[#f59e0b]"></div>
+                                    <span class="text-[9px] text-gray-600 dark:text-gray-400">API key generated</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -left-4 top-12 glass text-white text-xs px-3 py-2 rounded-lg animate-float" style="animation-delay: 0.5s;">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="zap" class="w-3 h-3 text-yellow-400"></i>
+                        <span>AI assistant</span>
+                    </div>
+                </div>
+                <div class="absolute -right-2 bottom-24 glass text-white text-xs px-3 py-2 rounded-lg animate-float" style="animation-delay: 1s;">
+                    <div class="flex items-center gap-2">
+                        <i data-lucide="bell" class="w-3 h-3 text-[#e94560]"></i>
+                        <span>Real-time updates</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Overview -->
+<section id="overview" class="py-20 px-6 bg-white dark:bg-[#0d0d1a] transition-colors">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">What we're building</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">A single platform partners <span class="text-gradient">live in</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                The Companion App replaces email threads, PDFs, and tickets with one continuous, self-service experience.
+            </p>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm reveal">
+                <div class="w-14 h-14 rounded-xl bg-[#e94560]/10 flex items-center justify-center mb-4"><i data-lucide="file-signature" class="w-7 h-7 text-[#e94560]"></i></div>
+                <h3 class="text-lg font-semibold mb-2">Contracts In-App</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Generate, review, and sign Partner Agreements without leaving the app. Embedded DocuSign experience.</p>
+                <div class="flex items-center gap-2 text-[#e94560] text-sm font-medium"><span>Embedded signing</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.1s;">
+                <div class="w-14 h-14 rounded-xl bg-[#10b981]/10 flex items-center justify-center mb-4"><i data-lucide="shield-check" class="w-7 h-7 text-[#10b981]"></i></div>
+                <h3 class="text-lg font-semibold mb-2">KYC Self-Service</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Automated verification: company validation, ID checks, sanctions screening — handled in minutes.</p>
+                <div class="flex items-center gap-2 text-[#10b981] text-sm font-medium"><span>Automated checks</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.2s;">
+                <div class="w-14 h-14 rounded-xl bg-[#6366f1]/10 flex items-center justify-center mb-4"><i data-lucide="graduation-cap" class="w-7 h-7 text-[#6366f1]"></i></div>
+                <h3 class="text-lg font-semibold mb-2">Built-in Training</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Video modules, quizzes, certifications — partners self-train and unlock new features.</p>
+                <div class="flex items-center gap-2 text-[#6366f1] text-sm font-medium"><span>Learn &amp; certify</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.3s;">
+                <div class="w-14 h-14 rounded-xl bg-[#f59e0b]/10 flex items-center justify-center mb-4"><i data-lucide="headphones" class="w-7 h-7 text-[#f59e0b]"></i></div>
+                <h3 class="text-lg font-semibold mb-2">AI-Powered Support</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4">Knowledge base, AI chat, and ticketing — all inside the app. Find answers in seconds.</p>
+                <div class="flex items-center gap-2 text-[#f59e0b] text-sm font-medium"><span>24/7 available</span><i data-lucide="arrow-right" class="w-4 h-4"></i></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Companion App Features -->
+<section id="companion" class="py-20 px-6 bg-gradient-to-br from-gray-50 to-white dark:from-[#0a0a14] dark:to-[#0d0d1a]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">Companion App</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">Six modules. <span class="text-gradient">One experience.</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+                Each module is a discrete capability — together they form the partner's day-to-day workspace.
+            </p>
+        </div>
+        <div class="grid lg:grid-cols-3 md:grid-cols-2 gap-6">
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center shadow-lg shadow-[#e94560]/30">
+                        <i data-lucide="layout-dashboard" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#e94560] bg-[#e94560]/10 px-3 py-1 rounded-full">Home</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Dashboard</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Mission control — onboarding progress, KPI cards, recent orders, alerts, and a personalized "next best action".</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Personalized status</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> KPI widgets</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Real-time activity feed</li>
+                </ul>
+            </div>
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.1s;">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#6366f1] to-[#4f46e5] flex items-center justify-center shadow-lg shadow-[#6366f1]/30">
+                        <i data-lucide="rocket" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#6366f1] bg-[#6366f1]/10 px-3 py-1 rounded-full">6 steps</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Onboarding Wizard</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">A guided 6-step journey from sign-up to go-live. Save and resume anywhere — progress syncs across devices.</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Application → KYC → Contract</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Technical → Training → Go-Live</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Stateful, save &amp; resume</li>
+                </ul>
+            </div>
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.2s;">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#10b981] to-[#059669] flex items-center justify-center shadow-lg shadow-[#10b981]/30">
+                        <i data-lucide="file-signature" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#10b981] bg-[#10b981]/10 px-3 py-1 rounded-full">DocuSign</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Contract Signing</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Embedded e-signing experience. Partners review, accept terms, and sign — no email round-trips.</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Dynamic PDF generation</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> In-app DocuSign embed</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Audit trail + archival</li>
+                </ul>
+            </div>
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.3s;">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#f59e0b] to-[#d97706] flex items-center justify-center shadow-lg shadow-[#f59e0b]/30">
+                        <i data-lucide="graduation-cap" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#f59e0b] bg-[#f59e0b]/10 px-3 py-1 rounded-full">5 modules</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Training &amp; Learning</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Video courses, interactive quizzes, and certifications. Unlocks features and signals readiness to go live.</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Hosted video (Mux)</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Quizzes (80% pass)</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Issued certificates</li>
+                </ul>
+            </div>
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.4s;">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#ec4899] to-[#db2777] flex items-center justify-center shadow-lg shadow-[#ec4899]/30">
+                        <i data-lucide="life-buoy" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#ec4899] bg-[#ec4899]/10 px-3 py-1 rounded-full">24 / 7</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Support Center</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">AI-powered knowledge base, ticketing, and live chat. Most partners self-resolve in under a minute.</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Searchable knowledge base</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> AI chat (Intercom Fin)</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Ticket lifecycle in-app</li>
+                </ul>
+            </div>
+            <div class="card-hover module-ring bg-white dark:bg-gray-900 rounded-2xl p-7 border border-gray-100 dark:border-gray-800 shadow-sm reveal" style="transition-delay:0.5s;">
+                <div class="flex items-center justify-between mb-5">
+                    <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#06b6d4] to-[#0891b2] flex items-center justify-center shadow-lg shadow-[#06b6d4]/30">
+                        <i data-lucide="settings-2" class="w-7 h-7 text-white"></i>
+                    </div>
+                    <span class="text-xs font-semibold text-[#06b6d4] bg-[#06b6d4]/10 px-3 py-1 rounded-full">Daily ops</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3">Operations Console</h3>
+                <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Once live, partners run their daily business here — products, orders, settlements, integrations.</p>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Catalog &amp; stock sync</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> Order management</li>
+                    <li class="flex items-center gap-2 text-gray-700 dark:text-gray-300"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i> API keys &amp; webhooks</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Process -->
+<section id="process" class="py-20 px-6 bg-white dark:bg-[#0d0d1a]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">Process</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">Everything flows through the <span class="text-gradient">Companion App</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Click any step to see how it lives inside the app.</p>
+        </div>
+
+        <div class="flex flex-wrap justify-center gap-3 mb-10">
+            <button onclick="showProcessStep(1)" class="process-tab active px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="1"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">1</span>Application</button>
+            <button onclick="showProcessStep(2)" class="process-tab px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="2"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">2</span>KYC</button>
+            <button onclick="showProcessStep(3)" class="process-tab px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="3"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">3</span>Contract</button>
+            <button onclick="showProcessStep(4)" class="process-tab px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="4"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">4</span>Technical</button>
+            <button onclick="showProcessStep(5)" class="process-tab px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="5"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">5</span>Training</button>
+            <button onclick="showProcessStep(6)" class="process-tab px-5 py-3 rounded-full bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 font-medium text-sm" data-step="6"><span class="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#e94560]/20 text-[#e94560] text-xs font-bold mr-2">6</span>Go-Live</button>
+        </div>
+
+        <!-- Process panels (one is active at a time, controlled by JS class toggle — no innerHTML mutation) -->
+        <div id="process-content" class="bg-gray-50 dark:bg-gray-900/50 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-8 transition-all">
+            <!-- Panel 1 -->
+            <div class="panel active" data-panel="1">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="user-plus" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 1</div><h3 class="text-xl font-bold">Application Submission</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Partner applies through the Companion App's public landing flow.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Sign-Up Wizard → Step 1</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">&lt; 5 min</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">Automated</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Company Info Form</div><div class="text-gray-500 text-xs">Legal name, VAT, address with EU validation</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Contact Details</div><div class="text-gray-500 text-xs">Primary contact with corporate email</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Business Profile</div><div class="text-gray-500 text-xs">Categories, volumes, current platform</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Auto-Validation</div><div class="text-gray-500 text-xs">VAT check via VIES, company data enrichment</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Clearbit Company API</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">VIES VAT Validation</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">Application ID + Partner Profile created in Companion App</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 2 -->
+            <div class="panel" data-panel="2">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="shield-check" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 2</div><h3 class="text-xl font-bold">KYC Verification</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Automated KYC happens entirely inside the Companion App.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Onboarding → Step 2 (KYC Module)</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">&lt;30min auto</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#f59e0b]">Hybrid</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Company Documents</div><div class="text-gray-500 text-xs">Upload Certificate of incorporation, VAT cert</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Owner ID Verification</div><div class="text-gray-500 text-xs">Government ID + selfie biometric check</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">PEP/Sanctions Check</div><div class="text-gray-500 text-xs">Automated compliance screening</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Risk Scoring</div><div class="text-gray-500 text-xs">LOW/MEDIUM/HIGH with manual review for HIGH</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Jumio/Onfido</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Clearbit</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Compliance DB</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">KYC Status surfaced in Companion App: APPROVED / PENDING / REJECTED</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 3 -->
+            <div class="panel" data-panel="3">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="file-signature" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 3</div><h3 class="text-xl font-bold">Contract Signing</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Partners sign Partner Agreements without ever leaving the Companion App.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Contract Module (DocuSign embedded)</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">&lt; 1 hour</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">Automated</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Contract Generation</div><div class="text-gray-500 text-xs">Dynamic PDF from templates</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">In-App Viewer</div><div class="text-gray-500 text-xs">Scroll, search, outline navigation</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Terms Acknowledgement</div><div class="text-gray-500 text-xs">Each section accepted individually</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Embedded E-Signature</div><div class="text-gray-500 text-xs">DocuSign embed inside Companion App</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">DocuSign eSignature</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Puppeteer</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">S3 Storage</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">Signed contract stored in Companion App vault + audit trail</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 4 -->
+            <div class="panel" data-panel="4">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="plug" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 4</div><h3 class="text-xl font-bold">Technical Setup</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">API keys, sandbox, and webhooks — all generated inside the Companion App.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Operations → Integrations tab</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">&lt; 30 min</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">Automated</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">API Credentials</div><div class="text-gray-500 text-xs">Client ID, Secret, API Key (one-time display)</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Webhook Configuration</div><div class="text-gray-500 text-xs">URL + event subscriptions</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Sandbox Access</div><div class="text-gray-500 text-xs">Full test environment with mock data</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Integration Options</div><div class="text-gray-500 text-xs">Plugin / Direct API / CSV upload</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">POAS API v1</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">NTS v2</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">Production-ready API access provisioned</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 5 -->
+            <div class="panel" data-panel="5">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="graduation-cap" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 5</div><h3 class="text-xl font-bold">Training &amp; Certification</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Partners watch video modules and pass quizzes in the Companion App's Learning module.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Training Module</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">1-2 hrs</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">Automated</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">5 Video Modules</div><div class="text-gray-500 text-xs">Hosted via Mux with progress tracking</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Quizzes</div><div class="text-gray-500 text-xs">80% pass mark required to certify</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Interactive Tutorials</div><div class="text-gray-500 text-xs">Guided walkthroughs for each tool</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Certificates</div><div class="text-gray-500 text-xs">Issued in-app, drives Go-Live unlock</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Mux video</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Quiz engine</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Companion App badges</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">Partner certified and ready for Go-Live</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Panel 6 -->
+            <div class="panel" data-panel="6">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-[#e94560] to-[#d13a52] flex items-center justify-center text-white shadow-lg shadow-[#e94560]/30"><i data-lucide="zap" class="w-6 h-6"></i></div>
+                            <div><div class="text-xs uppercase tracking-wider text-[#e94560] font-semibold">Step 6</div><h3 class="text-xl font-bold">Go-Live</h3></div>
+                        </div>
+                        <p class="text-gray-600 dark:text-gray-400 text-sm mb-4 leading-relaxed">Final approval and live status — managed end-to-end inside the Companion App.</p>
+                        <div class="bg-[#e94560]/10 border border-[#e94560]/20 rounded-lg p-3 mb-4 flex items-start gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-[#e94560] mt-0.5 flex-shrink-0"></i><div class="text-xs text-gray-700 dark:text-gray-300"><span class="font-semibold">Where in the app:</span> Companion App → Home → Go-Live Checklist</div></div>
+                        <div class="grid grid-cols-2 gap-3 mb-5">
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">&lt; 24 hrs</div><div class="text-xs text-gray-500">Duration</div></div>
+                            <div class="bg-white dark:bg-gray-900 rounded-lg p-3 border border-gray-100 dark:border-gray-800"><div class="text-base font-bold text-[#10b981]">Automated</div><div class="text-xs text-gray-500">Automation</div></div>
+                        </div>
+                        <h4 class="font-semibold mb-3 text-sm">Key Features</h4>
+                        <div class="space-y-2.5">
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Sandbox Test Pass</div><div class="text-gray-500 text-xs">Required test scenarios completed</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Go-Live Checklist</div><div class="text-gray-500 text-xs">Products uploaded, stock set, shipping configured</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">Approval Gate</div><div class="text-gray-500 text-xs">Auto-approve or manual for high-risk partners</div></div></div>
+                            <div class="flex items-start gap-3"><div class="w-5 h-5 rounded-full bg-[#10b981]/10 flex items-center justify-center flex-shrink-0 mt-0.5"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div><div class="font-medium text-sm">First-Order Watch</div><div class="text-gray-500 text-xs">Companion App monitors first 7 days</div></div></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="bg-white dark:bg-gray-900 rounded-xl p-5 border border-gray-100 dark:border-gray-800 mb-4">
+                            <h4 class="font-semibold mb-3 text-sm flex items-center gap-2"><i data-lucide="puzzle" class="w-4 h-4 text-gray-400"></i>Integrations Used</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Dashboard alerts</span>
+                                <span class="px-3 py-1.5 bg-gray-50 dark:bg-gray-800 rounded-full text-xs font-medium text-gray-700 dark:text-gray-300 border border-gray-200 dark:border-gray-700">Notification Service</span>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-5 text-white">
+                            <h4 class="font-semibold mb-2 text-sm flex items-center gap-2"><i data-lucide="check-circle" class="w-4 h-4 text-[#10b981]"></i>Output</h4>
+                            <div class="text-white/80 text-sm leading-relaxed">ACTIVE partner status visible across the Companion App</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-12 grid md:grid-cols-4 gap-4">
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 text-center card-hover"><div class="text-2xl font-bold text-[#10b981]">&lt;1hr</div><div class="text-sm text-gray-600 dark:text-gray-400">Validation SLA</div></div>
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 text-center card-hover"><div class="text-2xl font-bold text-[#10b981]">&lt;30min</div><div class="text-sm text-gray-600 dark:text-gray-400">KYC Auto-Check</div></div>
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 text-center card-hover"><div class="text-2xl font-bold text-[#f59e0b]">24hr</div><div class="text-sm text-gray-600 dark:text-gray-400">Manual Review</div></div>
+            <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 text-center card-hover"><div class="text-2xl font-bold text-[#10b981]">&lt;1hr</div><div class="text-sm text-gray-600 dark:text-gray-400">Go-Live Approval</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Wireframes -->
+<section id="wireframes" class="py-20 px-6 bg-gray-50 dark:bg-[#0a0a14]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">Companion App Screens</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">See it <span class="text-gradient">in motion</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Interactive mockups for the core Companion App flows.</p>
+        </div>
+
+        <div class="flex flex-wrap gap-2 mb-8 justify-center">
+            <button onclick="showWireframe('home')" class="wireframe-tab tab-btn active px-5 py-2.5 rounded-lg font-medium text-sm" data-wf="home"><i data-lucide="home" class="w-4 h-4 inline mr-1.5 -mt-0.5"></i>Home</button>
+            <button onclick="showWireframe('onboarding')" class="wireframe-tab tab-btn px-5 py-2.5 rounded-lg font-medium text-sm bg-gray-100" data-wf="onboarding"><i data-lucide="rocket" class="w-4 h-4 inline mr-1.5 -mt-0.5"></i>Onboarding</button>
+            <button onclick="showWireframe('contract')" class="wireframe-tab tab-btn px-5 py-2.5 rounded-lg font-medium text-sm bg-gray-100" data-wf="contract"><i data-lucide="file-signature" class="w-4 h-4 inline mr-1.5 -mt-0.5"></i>Contract</button>
+            <button onclick="showWireframe('training')" class="wireframe-tab tab-btn px-5 py-2.5 rounded-lg font-medium text-sm bg-gray-100" data-wf="training"><i data-lucide="graduation-cap" class="w-4 h-4 inline mr-1.5 -mt-0.5"></i>Training</button>
+            <button onclick="showWireframe('support')" class="wireframe-tab tab-btn px-5 py-2.5 rounded-lg font-medium text-sm bg-gray-100" data-wf="support"><i data-lucide="life-buoy" class="w-4 h-4 inline mr-1.5 -mt-0.5"></i>Support</button>
+        </div>
+
+        <div class="bg-white dark:bg-gray-900 rounded-2xl p-8 border border-gray-100 dark:border-gray-800 transition-all">
+            <!-- Wireframe panels -->
+            <div class="panel active flex justify-center" data-wf-panel="home">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar"><span>9:41</span><div class="flex items-center gap-1"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3 h-3"></i></div></div>
+                        <div class="px-4 pb-4 overflow-y-auto" style="height: calc(100% - 28px);">
+                            <div class="text-[10px] uppercase tracking-wider text-[#e94560] font-bold mb-1">Companion App</div>
+                            <div class="text-base font-bold mb-3 text-gray-900 dark:text-gray-100">Home</div>
+                            <div class="bg-gradient-to-br from-[#1a1a2e] to-[#16213e] rounded-xl p-3 mb-3 text-white">
+                                <div class="flex items-center justify-between mb-2"><span class="text-[10px] opacity-70">Onboarding</span><span class="text-[10px] font-semibold">4 / 6 steps</span></div>
+                                <div class="h-1.5 bg-white/20 rounded-full overflow-hidden mb-2"><div class="h-full bg-gradient-to-r from-[#e94560] to-[#10b981] rounded-full" style="width: 66%"></div></div>
+                                <div class="text-xs font-medium">Up next: Technical setup</div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mb-3">
+                                <div class="bg-[#10b981]/10 rounded-lg p-2.5"><div class="text-lg font-bold text-[#10b981]">156</div><div class="text-[10px] text-gray-500">Orders</div></div>
+                                <div class="bg-[#6366f1]/10 rounded-lg p-2.5"><div class="text-lg font-bold text-[#6366f1]">€12.4k</div><div class="text-[10px] text-gray-500">Revenue</div></div>
+                                <div class="bg-[#f59e0b]/10 rounded-lg p-2.5"><div class="text-lg font-bold text-[#f59e0b]">847</div><div class="text-[10px] text-gray-500">Products</div></div>
+                                <div class="bg-[#e94560]/10 rounded-lg p-2.5"><div class="text-lg font-bold text-[#e94560]">98.2%</div><div class="text-[10px] text-gray-500">Score</div></div>
+                            </div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">Recent activity</div>
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><div class="w-6 h-6 rounded-md bg-[#10b981]/10 flex items-center justify-center"><i data-lucide="check" class="w-3 h-3 text-[#10b981]"></i></div><div class="text-[10px] text-gray-700 dark:text-gray-300">Contract signed</div></div>
+                                <div class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><div class="w-6 h-6 rounded-md bg-[#6366f1]/10 flex items-center justify-center"><i data-lucide="play" class="w-3 h-3 text-[#6366f1]"></i></div><div class="text-[10px] text-gray-700 dark:text-gray-300">Module 3 quiz passed</div></div>
+                                <div class="flex items-center gap-2 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><div class="w-6 h-6 rounded-md bg-[#f59e0b]/10 flex items-center justify-center"><i data-lucide="key" class="w-3 h-3 text-[#f59e0b]"></i></div><div class="text-[10px] text-gray-700 dark:text-gray-300">API key generated</div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel flex justify-center" data-wf-panel="onboarding">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar"><span>9:41</span><div class="flex items-center gap-1"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3 h-3"></i></div></div>
+                        <div class="px-4 pb-4 overflow-y-auto" style="height: calc(100% - 28px);">
+                            <div class="text-[10px] uppercase tracking-wider text-[#e94560] font-bold mb-1">Companion App</div>
+                            <div class="text-base font-bold mb-3 text-gray-900 dark:text-gray-100">Onboarding Wizard</div>
+                            <div class="flex gap-1 mb-3">
+                                <div class="h-1 flex-1 bg-[#10b981] rounded-full"></div>
+                                <div class="h-1 flex-1 bg-[#10b981] rounded-full"></div>
+                                <div class="h-1 flex-1 bg-[#10b981] rounded-full"></div>
+                                <div class="h-1 flex-1 bg-[#e94560] rounded-full"></div>
+                                <div class="h-1 flex-1 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                <div class="h-1 flex-1 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                            </div>
+                            <div class="text-[10px] text-[#e94560] font-bold mb-1">Step 4 of 6</div>
+                            <div class="text-sm font-bold mb-3 text-gray-900 dark:text-gray-100">Technical Setup</div>
+                            <div class="space-y-2">
+                                <div class="p-3 border-2 border-[#10b981]/30 bg-[#10b981]/5 rounded-lg"><div class="flex items-center justify-between"><div class="text-[11px] font-semibold text-gray-900 dark:text-gray-100">1. Application</div><i data-lucide="check-circle-2" class="w-4 h-4 text-[#10b981]"></i></div></div>
+                                <div class="p-3 border-2 border-[#10b981]/30 bg-[#10b981]/5 rounded-lg"><div class="flex items-center justify-between"><div class="text-[11px] font-semibold text-gray-900 dark:text-gray-100">2. KYC</div><i data-lucide="check-circle-2" class="w-4 h-4 text-[#10b981]"></i></div></div>
+                                <div class="p-3 border-2 border-[#10b981]/30 bg-[#10b981]/5 rounded-lg"><div class="flex items-center justify-between"><div class="text-[11px] font-semibold text-gray-900 dark:text-gray-100">3. Contract</div><i data-lucide="check-circle-2" class="w-4 h-4 text-[#10b981]"></i></div></div>
+                                <div class="p-3 border-2 border-[#e94560] bg-[#e94560]/5 rounded-lg"><div class="flex items-center justify-between"><div class="text-[11px] font-semibold text-[#e94560]">4. Technical</div><i data-lucide="loader-2" class="w-4 h-4 text-[#e94560]"></i></div><div class="text-[10px] text-gray-500 mt-1">Generate API keys &amp; webhooks</div></div>
+                                <div class="p-3 border border-gray-200 dark:border-gray-700 rounded-lg opacity-60"><div class="flex items-center justify-between"><div class="text-[11px] font-medium text-gray-500">5. Training</div><i data-lucide="lock" class="w-4 h-4 text-gray-400"></i></div></div>
+                                <div class="p-3 border border-gray-200 dark:border-gray-700 rounded-lg opacity-60"><div class="flex items-center justify-between"><div class="text-[11px] font-medium text-gray-500">6. Go-Live</div><i data-lucide="lock" class="w-4 h-4 text-gray-400"></i></div></div>
+                            </div>
+                            <button class="w-full mt-3 h-9 bg-[#e94560] text-white rounded-lg text-xs font-semibold">Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel flex justify-center" data-wf-panel="contract">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar"><span>9:41</span><div class="flex items-center gap-1"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3 h-3"></i></div></div>
+                        <div class="px-4 pb-4 overflow-y-auto" style="height: calc(100% - 28px);">
+                            <div class="text-[10px] uppercase tracking-wider text-[#e94560] font-bold mb-1">Companion App</div>
+                            <div class="text-base font-bold mb-3 text-gray-900 dark:text-gray-100">Sign Contract</div>
+                            <div class="text-[10px] text-gray-500 mb-2">Boutique Nordique • Partner Agreement</div>
+                            <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-3 mb-3 h-44 overflow-y-auto">
+                                <div class="text-[9px] text-gray-700 dark:text-gray-300 space-y-2 leading-relaxed">
+                                    <div><strong>1. Parties</strong><br>This Agreement is between Miinto Group A/S and Boutique Nordique ApS.</div>
+                                    <div><strong>2. Services</strong><br>Miinto grants Partner non-exclusive rights to sell on the Miinto marketplace.</div>
+                                    <div><strong>3. Commission</strong><br>20% commission on each transaction.</div>
+                                    <div><strong>4. Termination</strong><br>30-day notice required by either party.</div>
+                                </div>
+                            </div>
+                            <div class="space-y-1.5 mb-3">
+                                <label class="flex items-start gap-2 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><input type="checkbox" checked class="mt-0.5 w-3.5 h-3.5 accent-[#e94560]"><span class="text-[10px] text-gray-700 dark:text-gray-300">I agree to the Partner Agreement</span></label>
+                                <label class="flex items-start gap-2 p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><input type="checkbox" checked class="mt-0.5 w-3.5 h-3.5 accent-[#e94560]"><span class="text-[10px] text-gray-700 dark:text-gray-300">I understand the commission structure</span></label>
+                            </div>
+                            <div class="border-2 border-dashed border-[#e94560] rounded-lg p-3 mb-3 text-center">
+                                <i data-lucide="pen-line" class="w-6 h-6 text-[#e94560] mx-auto mb-1"></i>
+                                <div class="text-[10px] font-semibold text-[#e94560]">Sign with DocuSign</div>
+                                <div class="text-[9px] text-gray-500 mt-0.5">Embedded · No email round-trip</div>
+                            </div>
+                            <button class="w-full h-9 bg-[#e94560] text-white rounded-lg text-xs font-semibold">Sign &amp; Complete</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel flex justify-center" data-wf-panel="training">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar"><span>9:41</span><div class="flex items-center gap-1"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3 h-3"></i></div></div>
+                        <div class="px-4 pb-4 overflow-y-auto" style="height: calc(100% - 28px);">
+                            <div class="text-[10px] uppercase tracking-wider text-[#e94560] font-bold mb-1">Companion App</div>
+                            <div class="text-base font-bold mb-3 text-gray-900 dark:text-gray-100">Training &amp; Learning</div>
+                            <div class="bg-gradient-to-br from-[#6366f1] to-[#4f46e5] rounded-xl p-3 mb-3 text-white">
+                                <div class="text-[10px] opacity-80 mb-1">Your progress</div>
+                                <div class="text-2xl font-bold">3 / 5</div>
+                                <div class="text-[10px] opacity-80">modules completed</div>
+                                <div class="h-1.5 bg-white/20 rounded-full mt-2 overflow-hidden"><div class="h-full bg-white rounded-full" style="width: 60%"></div></div>
+                            </div>
+                            <div class="space-y-2 mb-3">
+                                <div class="bg-white dark:bg-gray-800 border border-[#10b981]/30 rounded-lg p-2.5 flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-[#10b981] flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-white"></i></div><div class="flex-1"><div class="text-[11px] font-semibold text-gray-900 dark:text-gray-100">1. Marketplace 101</div><div class="text-[9px] text-[#10b981]">Completed · 100%</div></div></div>
+                                <div class="bg-white dark:bg-gray-800 border border-[#10b981]/30 rounded-lg p-2.5 flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-[#10b981] flex items-center justify-center"><i data-lucide="check" class="w-4 h-4 text-white"></i></div><div class="flex-1"><div class="text-[11px] font-semibold text-gray-900 dark:text-gray-100">2. Catalog &amp; Stock</div><div class="text-[9px] text-[#10b981]">Completed · 92%</div></div></div>
+                                <div class="bg-white dark:bg-gray-800 border-2 border-[#e94560] rounded-lg p-2.5 flex items-center gap-2"><div class="w-8 h-8 rounded-lg bg-[#e94560] flex items-center justify-center"><i data-lucide="play" class="w-4 h-4 text-white"></i></div><div class="flex-1"><div class="text-[11px] font-semibold text-[#e94560]">3. Order Management</div><div class="text-[9px] text-gray-500">Watching · 8:24 / 12:30</div></div></div>
+                                <div class="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-2.5 flex items-center gap-2 opacity-60"><div class="w-8 h-8 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center"><i data-lucide="lock" class="w-3.5 h-3.5 text-gray-400"></i></div><div class="flex-1"><div class="text-[11px] font-medium text-gray-500">4. Returns &amp; Disputes</div><div class="text-[9px] text-gray-400">Locked</div></div></div>
+                            </div>
+                            <div class="bg-[#f59e0b]/10 rounded-lg p-2.5 flex items-center gap-2"><i data-lucide="award" class="w-4 h-4 text-[#f59e0b]"></i><div class="text-[10px] text-gray-700 dark:text-gray-300">Pass quiz to unlock module 4</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel flex justify-center" data-wf-panel="support">
+                <div class="phone-frame">
+                    <div class="phone-screen">
+                        <div class="status-bar"><span>9:41</span><div class="flex items-center gap-1"><i data-lucide="signal" class="w-3 h-3"></i><i data-lucide="wifi" class="w-3 h-3"></i><i data-lucide="battery-full" class="w-3 h-3"></i></div></div>
+                        <div class="px-4 pb-4 overflow-y-auto" style="height: calc(100% - 28px);">
+                            <div class="text-[10px] uppercase tracking-wider text-[#e94560] font-bold mb-1">Companion App</div>
+                            <div class="text-base font-bold mb-3 text-gray-900 dark:text-gray-100">Support Center</div>
+                            <div class="relative mb-3">
+                                <input type="text" placeholder="Search the knowledge base..." class="w-full h-9 pl-8 pr-3 bg-gray-50 dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg text-[11px] text-gray-700 dark:text-gray-200">
+                                <i data-lucide="search" class="w-3.5 h-3.5 text-gray-400 absolute left-2.5 top-2.5"></i>
+                            </div>
+                            <div class="grid grid-cols-2 gap-2 mb-3">
+                                <div class="bg-[#6366f1]/10 rounded-lg p-3 text-center"><i data-lucide="book-open" class="w-5 h-5 text-[#6366f1] mx-auto mb-1"></i><div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">Knowledge Base</div><div class="text-[9px] text-gray-500">120 articles</div></div>
+                                <div class="bg-[#e94560]/10 rounded-lg p-3 text-center"><i data-lucide="message-circle" class="w-5 h-5 text-[#e94560] mx-auto mb-1"></i><div class="text-[10px] font-semibold text-gray-900 dark:text-gray-100">AI Assistant</div><div class="text-[9px] text-[#10b981]">Online</div></div>
+                            </div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">Your tickets</div>
+                            <div class="space-y-1.5 mb-3">
+                                <div class="flex items-center justify-between p-2.5 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><div class="flex items-center gap-2"><div class="w-2 h-2 bg-[#f59e0b] rounded-full"></div><div><div class="text-[11px] font-medium text-gray-900 dark:text-gray-100">#1248 Webhook signature</div><div class="text-[9px] text-gray-500">Replied 2h ago</div></div></div><i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-400"></i></div>
+                                <div class="flex items-center justify-between p-2.5 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><div class="flex items-center gap-2"><div class="w-2 h-2 bg-[#10b981] rounded-full"></div><div><div class="text-[11px] font-medium text-gray-900 dark:text-gray-100">#1241 Stock CSV format</div><div class="text-[9px] text-[#10b981]">Resolved</div></div></div><i data-lucide="chevron-right" class="w-3.5 h-3.5 text-gray-400"></i></div>
+                            </div>
+                            <div class="text-[10px] uppercase tracking-wider text-gray-500 font-semibold mb-2">Popular articles</div>
+                            <div class="space-y-1.5">
+                                <div class="p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg flex items-center justify-between"><span class="text-[10px] text-gray-700 dark:text-gray-300">How to connect my POS?</span><i data-lucide="external-link" class="w-3 h-3 text-gray-400"></i></div>
+                                <div class="p-2 bg-gray-50 dark:bg-gray-800/50 rounded-lg flex items-center justify-between"><span class="text-[10px] text-gray-700 dark:text-gray-300">Commission fees explained</span><i data-lucide="external-link" class="w-3 h-3 text-gray-400"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Architecture -->
+<section id="architecture" class="py-20 px-6 bg-white dark:bg-[#0d0d1a]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">Architecture</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">The Companion App at the <span class="text-gradient">center</span></h2>
+            <p class="text-xl text-gray-600 dark:text-gray-400">Every system orbits the partner experience.</p>
+        </div>
+
+        <div class="relative bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-[#0a0a14] rounded-3xl p-12 mb-12 border border-gray-100 dark:border-gray-800 overflow-hidden">
+            <div class="orb bg-[#e94560]" style="width:300px;height:300px;top:10%;right:10%;opacity:0.15;"></div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-center min-h-[460px] relative">
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#10b981]/10 flex items-center justify-center"><i data-lucide="shield-check" class="w-5 h-5 text-[#10b981]"></i></div><div><div class="font-semibold text-sm">KYC Service</div><div class="text-xs text-gray-500">Jumio + Clearbit</div></div></div></div>
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#f59e0b]/10 flex items-center justify-center"><i data-lucide="file-signature" class="w-5 h-5 text-[#f59e0b]"></i></div><div><div class="font-semibold text-sm">Contract Service</div><div class="text-xs text-gray-500">DocuSign</div></div></div></div>
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#6366f1]/10 flex items-center justify-center"><i data-lucide="user-check" class="w-5 h-5 text-[#6366f1]"></i></div><div><div class="font-semibold text-sm">Auth Service</div><div class="text-xs text-gray-500">JWT + 2FA</div></div></div></div>
+                </div>
+
+                <div class="flex flex-col items-center justify-center">
+                    <div class="hub-center w-44 h-44 rounded-3xl flex flex-col items-center justify-center text-white relative animate-pulse-glow">
+                        <i data-lucide="smartphone" class="w-12 h-12 mb-2"></i>
+                        <div class="text-center">
+                            <div class="font-bold text-lg">Companion</div>
+                            <div class="text-sm font-semibold">App</div>
+                        </div>
+                        <div class="text-[10px] mt-1 opacity-80">Next.js + React Native</div>
+                    </div>
+                    <div class="mt-6 text-center">
+                        <div class="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-1">Single Pane of Glass</div>
+                        <div class="text-sm font-semibold">Web · iOS · Android</div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#ec4899]/10 flex items-center justify-center"><i data-lucide="graduation-cap" class="w-5 h-5 text-[#ec4899]"></i></div><div><div class="font-semibold text-sm">Training Service</div><div class="text-xs text-gray-500">Mux + Quizzes</div></div></div></div>
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#06b6d4]/10 flex items-center justify-center"><i data-lucide="life-buoy" class="w-5 h-5 text-[#06b6d4]"></i></div><div><div class="font-semibold text-sm">Support Service</div><div class="text-xs text-gray-500">Intercom + KB</div></div></div></div>
+                    <div class="bg-white dark:bg-gray-900 rounded-xl p-4 border border-gray-100 dark:border-gray-800 shadow-sm card-hover"><div class="flex items-center gap-3"><div class="w-10 h-10 rounded-lg bg-[#e94560]/10 flex items-center justify-center"><i data-lucide="boxes" class="w-5 h-5 text-[#e94560]"></i></div><div><div class="font-semibold text-sm">Miinto Core</div><div class="text-xs text-gray-500">POAS + NTS v2</div></div></div></div>
+                </div>
+            </div>
+            <div class="text-center mt-6 text-sm text-gray-500 dark:text-gray-400 italic">All services expose APIs that the Companion App orchestrates into a single, coherent partner experience.</div>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-6">
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-lg bg-[#6366f1]/10 flex items-center justify-center"><i data-lucide="monitor-smartphone" class="w-5 h-5 text-[#6366f1]"></i></div>
+                    <div><h3 class="font-semibold">Companion App Frontend</h3><p class="text-sm text-gray-500">Next.js 14 + React Native + Tailwind</p></div>
+                </div>
+                <div class="space-y-2.5">
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="layout-dashboard" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Home / Dashboard</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="rocket" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Onboarding Wizard (6 steps)</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="file-signature" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Contract Signing (DocuSign embed)</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="graduation-cap" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Training &amp; Learning Modules</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="life-buoy" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Support &amp; Knowledge Base</span></div>
+                </div>
+            </div>
+
+            <div class="bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-800 shadow-sm">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-lg bg-[#10b981]/10 flex items-center justify-center"><i data-lucide="server" class="w-5 h-5 text-[#10b981]"></i></div>
+                    <div><h3 class="font-semibold">Backend Services</h3><p class="text-sm text-gray-500">NestJS · PostgreSQL · BullMQ</p></div>
+                </div>
+                <div class="space-y-2.5">
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="key" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Auth Service (JWT + 2FA)</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="clipboard-list" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Onboarding State Machine</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="shield" class="w-4 h-4 text-gray-400"></i><span class="text-sm">KYC Service (Clearbit + Jumio)</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="file-text" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Contract Service (DocuSign)</span></div>
+                    <div class="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800/50 rounded-lg"><i data-lucide="bell" class="w-4 h-4 text-gray-400"></i><span class="text-sm">Notifications (SendGrid + Push)</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-8 bg-gray-900 rounded-2xl p-6 border border-gray-800">
+            <h3 class="font-semibold text-white mb-4 flex items-center gap-2"><i data-lucide="database" class="w-5 h-5 text-gray-400"></i>Key Database Entities</h3>
+            <div class="grid md:grid-cols-3 gap-4">
+                <div class="p-4 bg-black/40 rounded-lg border border-gray-800">
+                    <div class="text-[#e94560] font-mono text-sm font-medium mb-2">partners</div>
+                    <div class="font-mono text-xs text-gray-400 space-y-0.5"><div>id UUID PK</div><div>legal_name VARCHAR</div><div>vat_number UNIQUE</div><div>status VARCHAR</div><div>kyc_status VARCHAR</div></div>
+                </div>
+                <div class="p-4 bg-black/40 rounded-lg border border-gray-800">
+                    <div class="text-[#10b981] font-mono text-sm font-medium mb-2">onboarding_progress</div>
+                    <div class="font-mono text-xs text-gray-400 space-y-0.5"><div>id UUID PK</div><div>partner_id FK</div><div>current_step INT</div><div>completed_steps JSONB</div><div>updated_at TIMESTAMP</div></div>
+                </div>
+                <div class="p-4 bg-black/40 rounded-lg border border-gray-800">
+                    <div class="text-[#6366f1] font-mono text-sm font-medium mb-2">training_records</div>
+                    <div class="font-mono text-xs text-gray-400 space-y-0.5"><div>id UUID PK</div><div>partner_user_id FK</div><div>module_id VARCHAR</div><div>quiz_score INT</div><div>certified_at TIMESTAMP</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Competitors -->
+<section id="competitors" class="py-20 px-6 bg-gray-50 dark:bg-[#0a0a14]">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-12 reveal">
+            <div class="inline-block text-xs font-semibold text-[#e94560] tracking-wider uppercase mb-3">Competitive Analysis</div>
+            <h2 class="text-4xl lg:text-5xl font-bold mb-4">Strengths to learn from. <span class="text-gradient">Weaknesses to avoid.</span></h2>
+        </div>
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border-2 border-[#e94560] shadow-lg">
+                <div class="text-xs bg-[#e94560] text-white px-3 py-1 rounded-full inline-block mb-4 font-semibold">MIINTO TARGET</div>
+                <h3 class="text-xl font-bold mb-2">Companion App</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i><span class="text-gray-600 dark:text-gray-400">All-in-one platform</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i><span class="text-gray-600 dark:text-gray-400">24-48h activation</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i><span class="text-gray-600 dark:text-gray-400">Sandbox + AI support</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-[#10b981]"></i><span class="text-gray-600 dark:text-gray-400">In-app contracts</span></div>
+                </div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+                <div class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full inline-block mb-4 font-semibold">BENCHMARK</div>
+                <h3 class="text-xl font-bold mb-2">Zalando</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">Partner portal</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">API sandbox</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="x" class="w-4 h-4 text-red-500"></i><span class="text-gray-600 dark:text-gray-400">Complex onboarding</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="x" class="w-4 h-4 text-red-500"></i><span class="text-gray-600 dark:text-gray-400">High fees</span></div>
+                </div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+                <div class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full inline-block mb-4 font-semibold">MODEL</div>
+                <h3 class="text-xl font-bold mb-2">Farfetch</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">Quality vetting</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">Premium brand</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="x" class="w-4 h-4 text-red-500"></i><span class="text-gray-600 dark:text-gray-400">Manual only</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="x" class="w-4 h-4 text-red-500"></i><span class="text-gray-600 dark:text-gray-400">Months to onboard</span></div>
+                </div>
+            </div>
+            <div class="card-hover bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-200 dark:border-gray-800">
+                <div class="text-xs bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 px-3 py-1 rounded-full inline-block mb-4 font-semibold">UX REFERENCE</div>
+                <h3 class="text-xl font-bold mb-2">About You</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">Modern UX</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-green-500"></i><span class="text-gray-600 dark:text-gray-400">Personalization</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="alert-triangle" class="w-4 h-4 text-yellow-500"></i><span class="text-gray-600 dark:text-gray-400">Acquired by Zalando</span></div>
+                    <div class="flex items-center gap-2"><i data-lucide="x" class="w-4 h-4 text-red-500"></i><span class="text-gray-600 dark:text-gray-400">Regional only</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="overflow-x-auto bg-white dark:bg-gray-900 rounded-2xl border border-gray-100 dark:border-gray-800 p-2">
+            <table class="w-full text-sm">
+                <thead>
+                    <tr class="border-b border-gray-200 dark:border-gray-800">
+                        <th class="text-left py-4 px-4 font-semibold">Feature</th>
+                        <th class="text-center py-4 px-4 font-semibold">Miinto Companion</th>
+                        <th class="text-center py-4 px-4 font-semibold">Zalando</th>
+                        <th class="text-center py-4 px-4 font-semibold">Farfetch</th>
+                        <th class="text-center py-4 px-4 font-semibold">About You</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-4 px-4 text-gray-700 dark:text-gray-300">Self-Service Onboarding</td><td class="py-4 px-4 text-center"><span class="text-[#10b981] font-bold">Full</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">Partial</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">None</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">Partial</span></td></tr>
+                    <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-4 px-4 text-gray-700 dark:text-gray-300">In-App E-Signature</td><td class="py-4 px-4 text-center"><span class="text-[#10b981] font-bold">Embedded</span></td><td class="py-4 px-4 text-center"><span class="text-[#10b981]">Yes</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">Manual</span></td><td class="py-4 px-4 text-center"><span class="text-[#10b981]">Yes</span></td></tr>
+                    <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-4 px-4 text-gray-700 dark:text-gray-300">Sandbox</td><td class="py-4 px-4 text-center"><span class="text-[#10b981] font-bold">Full</span></td><td class="py-4 px-4 text-center"><span class="text-[#10b981]">Yes</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">None</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">None</span></td></tr>
+                    <tr class="border-b border-gray-100 dark:border-gray-800"><td class="py-4 px-4 text-gray-700 dark:text-gray-300">Built-in Training</td><td class="py-4 px-4 text-center"><span class="text-[#10b981] font-bold">In-app</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">Docs only</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">External</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">Partial</span></td></tr>
+                    <tr><td class="py-4 px-4 text-gray-700 dark:text-gray-300">Onboarding Time</td><td class="py-4 px-4 text-center"><span class="text-[#10b981] font-bold">24-48h</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">1-3 wks</span></td><td class="py-4 px-4 text-center"><span class="text-red-500">1-3 mo</span></td><td class="py-4 px-4 text-center"><span class="text-[#f59e0b]">1-2 wks</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / CTA -->
+<section id="contact" class="py-20 px-6 gradient-bg-radial relative overflow-hidden">
+    <div class="orb bg-[#e94560]" style="width:350px;height:350px;top:-100px;left:20%;"></div>
+    <div class="max-w-4xl mx-auto text-center relative">
+        <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Ready to ship the <span class="text-gradient">Companion App</span>?</h2>
+        <p class="text-xl text-white/70 mb-8">A central platform where every Miinto partner thrives — from day zero to first thousand orders.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <button class="bg-white text-[#1a1a2e] px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all hover:scale-105">Schedule Architecture Review</button>
+            <button class="bg-[#e94560] text-white px-8 py-4 rounded-xl font-semibold hover:bg-[#d13a52] transition-all hover:scale-105 hover:shadow-2xl hover:shadow-[#e94560]/40">Start Development</button>
+        </div>
+        <div class="mt-12 grid md:grid-cols-3 gap-8 text-white">
+            <div><div class="text-3xl font-bold mb-2">600+</div><div class="text-white/60 text-sm">Partners to Migrate</div></div>
+            <div><div class="text-3xl font-bold mb-2">2025</div><div class="text-white/60 text-sm">NTS Deadline</div></div>
+            <div><div class="text-3xl font-bold mb-2">10x</div><div class="text-white/60 text-sm">Faster Onboarding</div></div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center"><span class="font-bold text-lg">M</span></div>
+                <span class="font-bold text-xl">Miinto Companion App</span>
+            </div>
+            <div class="text-sm text-gray-400">Project One-Pager — Confidential</div>
+        </div>
+        <div class="grid md:grid-cols-4 gap-8 text-sm text-gray-400">
+            <div><h4 class="text-white font-medium mb-3">Documentation</h4><ul class="space-y-2"><li><a href="#overview" class="hover:text-white transition">Overview</a></li><li><a href="#companion" class="hover:text-white transition">Companion App</a></li><li><a href="#process" class="hover:text-white transition">Process</a></li><li><a href="#architecture" class="hover:text-white transition">Architecture</a></li></ul></div>
+            <div><h4 class="text-white font-medium mb-3">Deliverables</h4><ul class="space-y-2"><li><a href="#" class="hover:text-white transition">BPM Documents</a></li><li><a href="#" class="hover:text-white transition">Wireframes</a></li><li><a href="#" class="hover:text-white transition">API Specs</a></li></ul></div>
+            <div><h4 class="text-white font-medium mb-3">Resources</h4><ul class="space-y-2"><li><a href="#" class="hover:text-white transition">Miinto API Docs</a></li><li><a href="#" class="hover:text-white transition">Competitor Analysis</a></li><li><a href="#" class="hover:text-white transition">Design System</a></li></ul></div>
+            <div><h4 class="text-white font-medium mb-3">Timeline</h4><ul class="space-y-2"><li>Phase 1: Discovery (1 wk)</li><li>Phase 2: Build (8 wks)</li><li>Phase 3: Test (2 wks)</li><li>Phase 4: Rollout (2 wks)</li></ul></div>
+        </div>
+        <div class="mt-8 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">Generated for Miinto — Internal Use Only</div>
+    </div>
+</footer>
+
+<script>
+    // Theme toggle
+    const root = document.documentElement;
+    const stored = localStorage.getItem('miinto-theme');
+    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        root.classList.add('dark');
+    }
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        root.classList.toggle('dark');
+        localStorage.setItem('miinto-theme', root.classList.contains('dark') ? 'dark' : 'light');
+        if (window.lucide) lucide.createIcons();
+    });
+
+    // Process step toggling — pure class swap, no DOM injection
+    function showProcessStep(step) {
+        document.querySelectorAll('.process-tab').forEach(tab => {
+            tab.classList.toggle('active', parseInt(tab.dataset.step) === step);
+        });
+        document.querySelectorAll('[data-panel]').forEach(panel => {
+            panel.classList.toggle('active', parseInt(panel.dataset.panel) === step);
+        });
+    }
+
+    // Wireframe toggling — pure class swap, no DOM injection
+    function showWireframe(type) {
+        document.querySelectorAll('.wireframe-tab').forEach(tab => {
+            tab.classList.toggle('active', tab.dataset.wf === type);
+        });
+        document.querySelectorAll('[data-wf-panel]').forEach(panel => {
+            panel.classList.toggle('active', panel.dataset.wfPanel === type);
+        });
+    }
+
+    function scrollToSection(id) {
+        const el = document.getElementById(id);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Reveal-on-scroll
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+    });
+
+    // Lucide init with retry until library is ready
+    function initLucide() {
+        if (typeof lucide === 'undefined' || !lucide.createIcons) {
+            setTimeout(initLucide, 80);
+            return;
+        }
+        lucide.createIcons();
+    }
+    initLucide();
+</script>
+</body>
+</html>
